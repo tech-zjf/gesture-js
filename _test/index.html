@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            #root{
+                width: 800px;
+                height:800px;
+                margin: 20px auto;
+                background-color: aquamarine;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script src="../src/index.js"></script>
+        <script>
+            const gesture = new GestureJs({
+                el:'#root',
+                triggerNum:60,
+                events:{
+                    upwardSliding(offset){
+                        console.log('上滑了:',offset)
+                    },
+                    downwardSliding(offset){
+                         console.log('下滑了:',offset)
+                    },
+                    leftSliding(offset){
+                          console.log('左滑了:',offset)
+                    },
+                    rightSliding(offset){
+                          console.log('右滑了:',offset)
+                    },
+                    _upwardScroll(){
+                        console.log('鼠标滚动向上')
+                    },
+                    _downwardScroll(){
+                        console.log('鼠标滚动向下')
+                    },
+                    _pinchZoom(zoomType){
+                        if(zoomType=='enlarge'){
+                            console.log('放大')
+                        }
+                         if(zoomType=='narrow'){
+                            console.log('缩小')
+                        }
+                    }
+                }
+            })
+
+            // 最后记得销毁事件
+            gesture.uninstall()
+        </script>
+    </body>
+</html>
