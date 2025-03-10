@@ -1,89 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gesture-JS Test</title>
-    <style>
-        #gesture-area {
-            width: 300px;
-            height: 300px;
-            background-color: #f0f0f0;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            border-radius: 8px;
-            user-select: none;
-        }
-        #log {
-            width: 300px;
-            margin: 20px auto;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-    </style>
-</head>
-<body>
-    <div id="gesture-area">在此区域测试手势</div>
-    <div id="log"></div>
-
-    <script type="module">
-        import GestureJs from '@tech-zjf/gesture-js';
-        
-        const logElement = document.getElementById('log');
-        const gestureArea = document.getElementById('gesture-area');
-
-        function log(message) {
-            const p = document.createElement('p');
-            p.textContent = message;
-            logElement.insertBefore(p, logElement.firstChild);
-        }
-
-        const gesture = new GestureJs({
-            el: '#gesture-area',
-            events: {
-                upwardSliding: (offset) => {
-                    log(`上滑: ${offset}px`);
-                },
-                downwardSliding: (offset) => {
-                    log(`下滑: ${offset}px`);
-                },
-                leftSliding: (offset) => {
-                    log(`左滑: ${offset}px`);
-                },
-                rightSliding: (offset) => {
-                    log(`右滑: ${offset}px`);
-                },
-                upwardScroll: () => {
-                    log('向上滚动');
-                },
-                downwardScroll: () => {
-                    log('向下滚动');
-                },
-                pinchZoom: (zoomType) => {
-                    log(`缩放: ${zoomType}`);
-                },
-                rotate: (angle) => {
-                    log(`旋转: ${angle}度`);
-                },
-                longPress: () => {
-                    log('长按');
-                },
-                doubleTap: () => {
-                    log('双击');
-                }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gesture-JS Test</title>
+        <style>
+            #gesture-area {
+                width: 300px;
+                height: 300px;
+                background-color: #f0f0f0;
+                margin: 20px auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                border-radius: 8px;
+                user-select: none;
             }
-        });
+            #log {
+                width: 300px;
+                margin: 20px auto;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                max-height: 200px;
+                overflow-y: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="gesture-area">在此区域测试手势</div>
+        <div id="log"></div>
 
-        // 页面卸载时清理事件监听
-        window.addEventListener('unload', () => {
-            gesture.uninstall();
-        });
-    </script>
-</body>
+        <script type="module">
+            import GestureJs from './node_modules/@tech-zjf/gesture-js/dist/index.js';
+
+            const logElement = document.getElementById('log');
+            const gestureArea = document.getElementById('gesture-area');
+
+            function log(message) {
+                const p = document.createElement('p');
+                p.textContent = message;
+                logElement.insertBefore(p, logElement.firstChild);
+            }
+
+            const gesture = new GestureJs({
+                el: '#gesture-area',
+                events: {
+                    upwardSliding: (offset) => {
+                        log(`上滑: ${offset}px`);
+                    },
+                    downwardSliding: (offset) => {
+                        log(`下滑: ${offset}px`);
+                    },
+                    leftSliding: (offset) => {
+                        log(`左滑: ${offset}px`);
+                    },
+                    rightSliding: (offset) => {
+                        log(`右滑: ${offset}px`);
+                    },
+                    upwardScroll: () => {
+                        log('向上滚动');
+                    },
+                    downwardScroll: () => {
+                        log('向下滚动');
+                    },
+                    pinchZoom: (zoomType) => {
+                        log(`缩放: ${zoomType}`);
+                    },
+                    rotate: (angle) => {
+                        log(`旋转: ${angle}度`);
+                    },
+                    longPress: () => {
+                        log('长按');
+                    },
+                    doubleTap: () => {
+                        log('双击');
+                    }
+                }
+            });
+
+            // 页面卸载时清理事件监听
+            window.addEventListener('unload', () => {
+                gesture.uninstall();
+            });
+        </script>
+    </body>
 </html>
