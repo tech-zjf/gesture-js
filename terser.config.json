@@ -1,0 +1,19 @@
+{
+    "compress": {
+        "dead_code": true,
+        "drop_console": true,
+        "drop_debugger": true,
+        "pure_funcs": ["console.log", "console.info", "console.warn", "console.error"],
+        "passes": 2
+    },
+    "mangle": {
+        "toplevel": true,
+        "properties": {
+            "regex": "^_"
+        }
+    },
+    "output": {
+        "beautify": false,
+        "comments": false
+    }
+}
